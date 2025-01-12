@@ -14,7 +14,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 // 发送数据到前端
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Resource
