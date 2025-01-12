@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group07.mapper.BorrowRecordMapper">
+
+    <select id="getAllBorrowRecords" resultType="com.group07.entity.BorrowRecord">
+        SELECT *
+        FROM borrow_record
+    </select>
+
+    <select id="getBorrowRecordByReaderId" parameterType="int" resultType="com.group07.entity.BorrowRecord">
+        SELECT *
+        FROM borrow_record
+        WHERE reader_id = #{reader_id}
+    </select>
+
+    <insert id="addBorrowRecord" parameterType="com.group07.entity.BorrowRecord">
+        INSERT INTO borrow_record (reader_id, book_id, borrow_date, return_date, due_date, status)
+        VALUES (#{reader_id}, #{book_id}, #{borrow_date}, #{return_date}, #{due_date}, #{status})
+    </insert>
+
+    <update id="editBorrowRecord" parameterType="com.group07.entity.BorrowRecord">
+        UPDATE borrow_record
+        SET reader_id=#{reader_id},
+            book_id=#{book_id},
+            borrow_date=#{borrow_date},
+            return_date=#{return_date},
+            due_date=#{due_date},
+            status=#{status}
+        WHERE record_id = #{record_id}
+    </update>
+
+    <delete id="deleteBorrowRecord" parameterType="int">
+        DELETE
+        FROM borrow_record
+        WHERE record_id = #{record_id}
+    </delete>
+
+</mapper>

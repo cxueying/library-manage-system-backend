@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group07.mapper.BookMapper">
+
+    <!-- 查询书籍 -->
+    <select id="queryBook" resultType="com.group07.entity.Book">
+        SELECT *
+        FROM book
+        WHERE book_name LIKE CONCAT('%', #{searchWord}, '%')
+    </select>
+
+    <!-- 查询所有书籍 -->
+    <select id="getAllBooks" resultType="com.group07.entity.Book">
+        SELECT *
+        FROM book
+    </select>
+
+    <!-- 添加书籍 -->
+    <insert id="addBook" parameterType="com.group07.entity.Book">
+        INSERT INTO book (book_name, author, publish, ISBN, introduction, language, price, pub_date, class_id, count)
+        VALUES (#{book_name}, #{author}, #{publish}, #{ISBN}, #{introduction}, #{language}, #{price}, #{pub_date},
+                #{class_id}, #{count})
+    </insert>
+
+    <!-- 根据 ID 查询书籍 -->
+    <select id="getBookById" parameterType="int" resultType="com.group07.entity.Book">
+        SELECT *
+        FROM book
+        WHERE book_id = #{book_id}
+    </select>
+
+    <!-- 编辑书籍 -->
+    <update id="editBook" parameterType="com.group07.entity.Book">
+        UPDATE book
+        SET book_name=#{book_name},
+            author=#{author},
+            publish=#{publish},
+            ISBN=#{ISBN},
+            introduction=#{introduction},
+            language=#{language},
+            price=#{price},
+            pub_date=#{pub_date},
+            class_id=#{class_id},
+            count=#{count}
+        WHERE book_id = #{book_id}
+    </update>
+
+    <!-- 删除书籍 -->
+    <delete id="deleteBook" parameterType="int">
+        DELETE
+        FROM book
+        WHERE book_id = #{book_id}
+    </delete>
+
+</mapper>

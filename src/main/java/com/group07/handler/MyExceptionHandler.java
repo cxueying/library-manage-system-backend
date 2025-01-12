@@ -1,4 +1,4 @@
-package com.library.handler;
+package com.group07.handler;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,7 +17,7 @@ public class MyExceptionHandler {
     public String handleIllegalArgumentException(Exception e) {
         String msg = e.getMessage();//获取到的错误信息
         log.error("IllegalArgumentException:" + msg);
-        return "发生错误，错误信息为：" + msg;
+        return msg;
     }
 
     @ExceptionHandler(RuntimeException.class)

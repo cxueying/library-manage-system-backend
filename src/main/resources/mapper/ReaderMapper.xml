@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group07.mapper.ReaderMapper">
+
+    <select id="getAllReaders" resultType="com.group07.entity.Reader">
+        SELECT *
+        FROM reader
+    </select>
+
+    <select id="getReaderById" parameterType="int" resultType="com.group07.entity.Reader">
+        SELECT *
+        FROM reader
+        WHERE reader_id = #{reader_id}
+    </select>
+
+    <insert id="addReader" parameterType="com.group07.entity.Reader">
+        INSERT INTO reader (name, sex, birth, address, phone, email)
+        VALUES (#{name}, #{sex}, #{birth}, #{address}, #{phone}, #{email})
+    </insert>
+
+    <update id="editReader" parameterType="com.group07.entity.Reader">
+        UPDATE reader
+        SET name=#{name},
+            sex=#{sex},
+            birth=#{birth},
+            address=#{address},
+            phone=#{phone},
+            email=#{email}
+        WHERE reader_id = #{reader_id}
+    </update>
+
+    <delete id="deleteReader" parameterType="int">
+        DELETE
+        FROM reader
+        WHERE reader_id = #{reader_id}
+    </delete>
+
+</mapper>
